@@ -2,7 +2,16 @@ from algo_tester.const import *
 import os
 from PIL import Image
 
+
 class Comparator():
+
+    '''
+    Class taking a set of pictures (processed by algorithm) and comparing
+    them to some ground truths (references). The goal is to determine the
+    accuracy and the efficiency of the different movement detection
+    algorithms.
+    '''
+
     def __init__(self, directory: str) -> None:
         self._directory: str = directory
         self._files: list[str] = os.listdir(directory)
@@ -14,6 +23,9 @@ class Comparator():
         self._init_lists()
 
     def _init_lists(self):
+
+        '''Generating lists of the different algorithms and dataset provided'''
+
         for filename in self._files:
             file_details: list[str] = filename.split('_')
 
@@ -28,6 +40,9 @@ class Comparator():
                 print(f'{filename} : filename not formatted as expected')
 
     def compare_images(self, ground_truth, processed_image) -> Results:
+
+        '''Comparing 2 images and returning the results.'''
+
         if not (ground_truth.size == processed_image.size):
             print("Please provide 2 images with same size")
             return {
@@ -75,6 +90,9 @@ class Comparator():
         }
 
     def compute_images_results(self):
+
+        '''Public function to call for processing the whole folder.'''
+
         for filename in self._files_to_analyze:
             algo, dataset, *_ = filename.split('_')
             groundtruth_file: str = ""
@@ -101,7 +119,7 @@ class Comparator():
             if result["algo"] == "SigmaDelta" and result["dataset"] == "MovedObject":
                 print(f'result from comparator: {result}')
                 # print(f'fn = {result["results"]["fn"]}, fp = {result["results"]["fp"]}')
-    
+
     def _compute_algos_stats(self):
         for algo in ALGORITHMS:
             pass
