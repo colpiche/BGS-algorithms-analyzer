@@ -22,6 +22,13 @@ class Comparator():
         self._datasets_stats: list[DatasetStats] = []
         self._init_lists()
 
+    def get_images_results(self) -> list[ImageResults]:
+        return self._images_results
+
+    def print_images_results(self):
+        for result in self._images_results:
+            print(result)
+
     def _init_lists(self):
 
         '''Generating lists of the different algorithms and dataset provided'''
@@ -106,19 +113,13 @@ class Comparator():
 
             processed_image = Image.open(filepath)
             groundtruth = Image.open(groundtruth_path)
-            results: Results = self.compare_images(processed_image, groundtruth)
+            results: Results = self.compare_images(groundtruth, processed_image)
 
             self._images_results.append({
                 "algo": algo,
                 "dataset": dataset,
                 "results": results
             })
-
-        # ONLY FOR TESTING TO FIND THE BUG WHERE VALUES ARE SWITCHED BETWEEN DICTIONNARIES
-        for result in self._images_results:
-            if result["algo"] == "SigmaDelta" and result["dataset"] == "MovedObject":
-                print(f'result from comparator: {result}')
-                # print(f'fn = {result["results"]["fn"]}, fp = {result["results"]["fp"]}')
 
     def _compute_algos_stats(self):
         for algo in ALGORITHMS:
