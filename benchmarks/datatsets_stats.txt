@@ -1,0 +1,7 @@
+Dataset : Bootstrap - Accuracy : 0.8089806547619048
+Dataset : Camouflage - Accuracy : 0.890922619047619
+Dataset : ForegroundAperture - Accuracy : 0.7682142857142856
+Dataset : LightSwitch - Accuracy : 0.34133184523809523
+Dataset : MovedObject - Accuracy : 0.9605952380952382
+Dataset : TimeOfDay - Accuracy : 0.7873363095238096
+Dataset : WavingTrees - Accuracy : 0.8593005952380953

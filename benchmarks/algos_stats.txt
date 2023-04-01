@@ -1,0 +1,7 @@
+Algo : IndependantMultimodal - Accuracy : 0.9281994047619048
+Algo : LBFuzzyGaussian - Accuracy : 0.6469717261904762
+Algo : LBMixtureOfGaussians - Accuracy : 0.7947916666666667
+Algo : LBSimpleGaussian - Accuracy : 0.6036383928571428
+Algo : SigmaDelta - Accuracy : 0.8070535714285715
+Algo : SuBSENSE - Accuracy : 0.8470238095238095
+Algo : T2FMRF-UV - Accuracy : 0.7890029761904762
