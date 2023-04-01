@@ -35,7 +35,7 @@ class ImageResults(TypedDict):
     results: Results
 
 
-class AlgoResults(TypedDict, total = False):
+class AlgoResults(TypedDict, total=False):
     algo: str
     results: list[Results]
 
@@ -45,7 +45,7 @@ class AlgoStats(TypedDict):
     accuracy: float
 
 
-class DatasetResults(TypedDict, total = False):
+class DatasetResults(TypedDict, total=False):
     dataset: str
     results: Results
 

@@ -24,11 +24,11 @@ class Comparator():
         self._algos_stats: list[AlgoStats] = []
         self._datasets_results: DatasetResults = {}
         self._datasets_stats: list[DatasetStats] = []
-    
+
     def start(self):
 
         '''Public function to call first, starting the machine'''
-
+        
         self._init_lists()
         self._compute_comparisons()
         self._compute_algos_stats()
@@ -50,10 +50,10 @@ class Comparator():
                 self._files_to_analyze.append(filename)
             else:
                 print(f'{filename} : filename not formatted as expected')
-        
+
         for algo in ALGORITHMS:
             self._algos_results[algo] = []
-        
+
         for dataset in DATASETS:
             self._datasets_results[dataset] = []
 
@@ -126,17 +126,17 @@ class Comparator():
             "fp": fp,
             "accuracy": (tn + tp) / (tn + tp + fn + fp)
         }
-    
+
     def _store_results(self, algo: str, dataset: str, results: Results):
 
         '''Storing the comparison results in the different lists'''
-        
+
         self._images_results.append({
                 "algo": algo,
                 "dataset": dataset,
                 "results": results
             })
-        
+
         self._algos_results[algo].append(results)
         self._datasets_results[dataset].append(results)
 
@@ -149,7 +149,7 @@ class Comparator():
 
             for result in self._algos_results[algo]:
                 accuracies.append(result['accuracy'])
-            
+
             self._algos_stats.append({"algo": algo, "accuracy": statistics.fmean(accuracies)})
 
     def _compute_datasets_stats(self):
@@ -161,9 +161,9 @@ class Comparator():
 
             for result in self._datasets_results[dataset]:
                 accuracies.append(result['accuracy'])
-            
+
             self._datasets_stats.append({"dataset": dataset, "accuracy": statistics.fmean(accuracies)})
-    
+
     def _create_benchmarks_directory(self):
 
         '''Creating directory to store the results if not present'''
@@ -172,7 +172,7 @@ class Comparator():
 
         if not os.path.exists(PATH):
             os.makedirs(PATH)
-    
+
     def get_images_results(self) -> list[ImageResults]:
         return self._images_results
 
@@ -182,7 +182,7 @@ class Comparator():
 
         for result in self._images_results:
             print(result)
-    
+
     def print_algos_results(self):
 
         '''Printing average accuracies of algos'''
@@ -192,17 +192,17 @@ class Comparator():
 
         for algo, results in self._algos_results.items():
             print(f'{algo} : {results}')
-    
+
     def print_dataset_results(self):
 
         '''Printing average accuracies of datasets'''
 
         print('DATASET RESULTS')
         print('------------')
-        
+
         for dataset, results in self._datasets_results.items():
             print(f'{dataset} : {results}')
-    
+
     def print_global_accuracy(self):
 
         '''Printing the average accuracy of all computed comparisons'''
@@ -211,9 +211,9 @@ class Comparator():
 
         for result in self._images_results:
             accuracies.append(result["results"]["accuracy"])
-        
+
         print(statistics.fmean(accuracies))
-    
+
     def export_images_results(self):
 
         '''Exporting all computed comparisons in a file'''
@@ -240,7 +240,7 @@ class Comparator():
 
         self._create_benchmarks_directory()
         with open(r'benchmarks\algos_stats.txt', 'w') as file:
-            
+
             for result in self._algos_stats:
                 line: str = f'Algo : {result["algo"]} - '
                 line = line + f'Accuracy : {result["accuracy"]}'
@@ -263,4 +263,3 @@ class Comparator():
                 file.write('\n')
 
             file.close()
-    
