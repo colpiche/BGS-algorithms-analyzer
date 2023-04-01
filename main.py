@@ -1,16 +1,14 @@
 from algo_tester.comparator import Comparator
-from PIL import Image
-# https://pillow.readthedocs.io/en/stable/handbook/tutorial.html
-import os
-
 
 DIRECTORY: str = "outputs"
 
 
 def main():
     comparator: Comparator = Comparator(DIRECTORY)
-    comparator.compute_images_results()
-    comparator.print_images_results()
+    comparator.start()
+    comparator.export_images_results()
+    comparator.export_algos_stats()
+    comparator.export_datatsets_stats()
 
 
 if __name__ == "__main__":
