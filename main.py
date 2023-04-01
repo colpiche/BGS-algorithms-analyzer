@@ -1,4 +1,4 @@
-from algo_tester.comparator import Comparator
+from algos_analyzer.comparator import Comparator
 
 DIRECTORY: str = "outputs"
 

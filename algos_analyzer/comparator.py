@@ -1,4 +1,4 @@
-from algo_tester.types import *
+from algos_analyzer.types import *
 import os
 import statistics
 from PIL import Image
@@ -28,7 +28,7 @@ class Comparator():
     def start(self):
 
         '''Public function to call first, starting the machine'''
-        
+
         self._init_lists()
         self._compute_comparisons()
         self._compute_algos_stats()
